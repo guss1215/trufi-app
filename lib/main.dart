@@ -246,18 +246,22 @@ void main() {
           useMaterial3: true,
         ),
       ),
-      socialMediaLinks: const [
+      socialMediaLinks: [
         SocialMediaLink(
           url: _facebookUrl,
-          icon: Icons.facebook,
+          icon: SocialMediaPreset.facebook.icon,
           label: 'Facebook',
         ),
         SocialMediaLink(
           url: _instagramUrl,
-          icon: Icons.camera_alt_outlined,
+          icon: SocialMediaPreset.instagram.icon,
           label: 'Instagram',
         ),
-        SocialMediaLink(url: _whatsappUrl, icon: Icons.chat, label: 'WhatsApp'),
+        SocialMediaLink(
+          url: _whatsappUrl,
+          icon: SocialMediaPreset.whatsapp.icon,
+          label: 'WhatsApp',
+        ),
       ],
       providers: [
         ChangeNotifierProvider(

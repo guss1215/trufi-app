@@ -91,8 +91,7 @@ assets/
 
 - Facebook: https://www.facebook.com/trufiapp/
 - Instagram: https://www.instagram.com/trufi.app
-- X (Twitter): https://x.com/trufiapp
-- WhatsApp: https://wa.me/message/SXGYZP66KWYSO1
+- WhatsApp: https://wa.me/59167835296
 
 ## 🚀 Desarrollo
 
