@@ -1,0 +1,20 @@
+services:
+  generate:
+    image: openmaptiles/planetiler-openmaptiles:3.16
+    env_file:
+      - .env
+    volumes:
+      - ../pbf-bolivia-cochabamba/out:/in:ro
+      - ./out:/out
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx${JAVA_MEMORY}
+    command: >-
+      --download
+      --force
+      --osm-path=/in/${CITY_NAME}.osm.pbf
+      --output=/out/${CITY_NAME}.mbtiles
+      --maxzoom=${MAX_ZOOM}
+      --minzoom=${MIN_ZOOM}
+      --threads=${THREADS}
+      --tmpdir=/tmp
+      --download_dir=/tmp/sources
