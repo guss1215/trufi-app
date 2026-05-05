@@ -1,0 +1,11 @@
+services:
+  extractor:
+    build:
+      # Pinned to a specific commit of trufi-pbf-extractor for reproducibility.
+      # Bump when upstream changes — there are no tags, only the master branch.
+      context: https://github.com/trufi-association/trufi-pbf-extractor.git#b9e04c32ced29f0925d956dd12ad3271a4bce392
+    container_name: pbf-bolivia-cochabamba
+    env_file:
+      - .env
+    volumes:
+      - ./out:/app/out
