@@ -1,0 +1,3 @@
+out/*
+!out/cochabamba.osm.pbf
+country.osm.pbf
