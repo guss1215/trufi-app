@@ -7,7 +7,7 @@
  *   - trufi-server-otp/cochabamba.gtfs.zip (OTP servers)
  *
  * Starting point: upstream example at
- * https://github.com/trufi-association/trufi-gtfs-builder/tree/v2.11.0/examples/Bolivia-Cochabamba
+ * https://github.com/trufi-association/trufi-gtfs-builder/tree/v2.13.0/examples/Bolivia-Cochabamba
  *
  * Cochabamba-specific tweaks live below — adjust them here, not in upstream.
  */
