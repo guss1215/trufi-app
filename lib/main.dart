@@ -58,7 +58,7 @@ final List<IRoutingProvider> _routingEngines = [
   if (kIsWeb)
     TrufiPlannerProvider(
       config: const TrufiPlannerConfig.remote(
-        serverUrl: 'https://planner.trufi.app/api',
+        serverUrl: '/api',
       ),
     ),
   // Online routing via OTP 2.8.1
