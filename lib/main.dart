@@ -324,27 +324,42 @@ void main() {
         FaresTrufiScreen(
           config: FaresConfig(
             currency: 'Bs.',
-            lastUpdated: DateTime(2024, 1, 15),
-            fares: [
-              const FareInfo(
-                transportType: 'Trufi',
-                icon: Icons.directions_bus,
-                regularFare: '2.00',
-                studentFare: '1.50',
-                seniorFare: '1.00',
-              ),
-              const FareInfo(
-                transportType: 'Micro',
-                icon: Icons.airport_shuttle,
-                regularFare: '1.50',
-                studentFare: '1.00',
-                seniorFare: '0.75',
-              ),
-              const FareInfo(
-                transportType: 'Minibus',
-                icon: Icons.directions_bus_filled,
-                regularFare: '2.50',
-                studentFare: '2.00',
+            lastUpdated: DateTime(2026, 5, 6),
+            additionalNotes:
+                'Tarifa provisional vigente para servicios urbanos dentro '
+                'del Cercado. El monto cobrado en algunos operadores puede '
+                'diferir.',
+            fares: const [
+              FareInfo(
+                title: 'Pasaje urbano (Cercado)',
+                icon: Icons.directions_bus_rounded,
+                primary: FareCategory(
+                  label: 'Usuarios en general',
+                  price: '3.00',
+                  icon: Icons.person_rounded,
+                ),
+                additional: [
+                  FareCategory(
+                    label: 'Estudiante sec./universitario',
+                    price: '2.00',
+                    icon: Icons.school_rounded,
+                  ),
+                  FareCategory(
+                    label: 'Estudiante de primaria',
+                    price: '1.00',
+                    icon: Icons.child_care_rounded,
+                  ),
+                  FareCategory(
+                    label: 'Adulto mayor',
+                    price: '2.50',
+                    icon: Icons.elderly_rounded,
+                  ),
+                  FareCategory(
+                    label: 'Persona con discapacidad',
+                    price: '2.50',
+                    icon: Icons.accessible_rounded,
+                  ),
+                ],
               ),
             ],
           ),
