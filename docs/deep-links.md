@@ -60,9 +60,12 @@ curl -i https://planner.trufi.app/.well-known/apple-app-site-association
 ## Android
 
 - `android/app/src/main/AndroidManifest.xml` has an `<intent-filter android:autoVerify="true">`
-  for `https://planner.trufi.app/route`.
+  matching `https://planner.trufi.app/` at the **host level** (`pathPrefix="/"`), so the
+  app handles any current or future shareable link from this domain — not just `/route`.
+  The app's deep-link handler decides what to do per path (today: `/route`; unknown
+  paths just open the app).
 - `assetlinks.json` lists `package_name = app.trufi.navigator` and the SHA-256 of the
-  signing certificate.
+  signing certificate. (Asset-links verification is per-domain, independent of path.)
 
 ### ⚠️ TODO — release signing
 
@@ -95,7 +98,8 @@ append its SHA-256 to the `sha256_cert_fingerprints` array (it accepts multiple)
 - `ios/Runner.xcodeproj/project.pbxproj` references it via `CODE_SIGN_ENTITLEMENTS`
   on all three Runner build configs (Debug/Release/Profile).
 - `apple-app-site-association` lists the App ID `NNB9PHQ49J.app.trufi.navigator`
-  and matches the path `/route*`.
+  and matches all paths (`"/": "*"`), mirroring the Android host-level match so both
+  platforms handle any shareable link from the domain.
 
 ### ⚠️ Requires the Associated Domains capability
 

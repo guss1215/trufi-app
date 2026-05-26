@@ -5,8 +5,8 @@
         "appIDs": ["NNB9PHQ49J.app.trufi.navigator"],
         "components": [
           {
-            "/": "/route*",
-            "comment": "Open shared route links directly in the Trufi app"
+            "/": "*",
+            "comment": "Open any shareable planner.trufi.app link in the Trufi app"
           }
         ]
       }
