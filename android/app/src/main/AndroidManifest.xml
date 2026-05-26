@@ -46,12 +46,13 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-            <!-- App Links -->
+            <!-- App Links: https://planner.trufi.app/route?... opens the app directly.
+                 Verified via https://planner.trufi.app/.well-known/assetlinks.json -->
             <intent-filter android:autoVerify="true">
               <action android:name="android.intent.action.VIEW" />
               <category android:name="android.intent.category.DEFAULT" />
               <category android:name="android.intent.category.BROWSABLE" />
-              <data android:scheme="https" android:host="trufi.example" android:pathPrefix="/app" />
+              <data android:scheme="https" android:host="planner.trufi.app" android:pathPrefix="/route" />
             </intent-filter>
             <intent-filter>
               <action android:name="android.intent.action.VIEW" />

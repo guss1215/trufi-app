@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.trufi.navigator",
+      "sha256_cert_fingerprints": [
+        "22:C6:BE:5E:54:9B:4C:BE:9C:0F:A9:70:8A:3D:9F:40:12:09:86:01:65:6C:B6:75:9B:89:FA:74:BE:DE:47:8F"
+      ]
+    }
+  }
+]

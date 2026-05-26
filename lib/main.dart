@@ -32,6 +32,10 @@ import 'l10n/app_localizations.dart';
 const _photonUrl = 'https://photon.trufi.app';
 const _otp281Endpoint = 'https://otp281.trufi.app';
 const _otp150Endpoint = 'https://otp150.trufi.app';
+// Base URL for shared route links. Must be an HTTPS domain that hosts the
+// App Links / Universal Links verification files under /.well-known/ so that
+// tapping a shared link opens the installed app directly. See docs/deep-links.md.
+const _shareBaseUrl = 'https://planner.trufi.app';
 
 // App configuration
 const _defaultCenter = LatLng(-17.3988354, -66.1626903);
@@ -313,6 +317,7 @@ void main() {
           config: HomeScreenConfig(
             appName: _appName,
             deepLinkScheme: _deepLinkScheme,
+            shareBaseUrl: _shareBaseUrl,
             poiLayersManager: POILayersManager(assetsBasePath: 'assets/pois'),
           ),
           onStartNavigation: (context, itinerary, locationService) {
