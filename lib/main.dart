@@ -32,10 +32,11 @@ import 'l10n/app_localizations.dart';
 const _photonUrl = 'https://photon.trufi.app';
 const _otp281Endpoint = 'https://otp281.trufi.app';
 const _otp150Endpoint = 'https://otp150.trufi.app';
-// Base URL for shared route links. Must be an HTTPS domain that hosts the
+// Base URL for the Trufi planner. Used both as the remote routing server and
+// as the base for shared route links. Must be an HTTPS domain that hosts the
 // App Links / Universal Links verification files under /.well-known/ so that
 // tapping a shared link opens the installed app directly. See docs/deep-links.md.
-const _shareBaseUrl = 'https://planner.trufi.app';
+const _baseUrl = 'https://planner.trufi.app';
 
 // App configuration
 const _defaultCenter = LatLng(-17.3988354, -66.1626903);
@@ -48,7 +49,6 @@ const _feedbackUrl = 'https://forms.gle/QMLhJT7N44Bh9zBN6';
 const _facebookUrl = 'https://www.facebook.com/trufiapp/';
 const _instagramUrl = 'https://www.instagram.com/trufi.app';
 const _whatsappUrl = 'https://wa.me/59167835296';
-const _shareUrl = 'https://www.trufi.app/';
 
 // Routing engines
 final List<IRoutingProvider> _routingEngines = [
@@ -66,7 +66,7 @@ final List<IRoutingProvider> _routingEngines = [
         // production (same-origin behind the YARP gateway) but
         // breaks `flutter run -d chrome` locally because it
         // resolves to `localhost:8080/api`, which doesn't exist.
-        serverUrl: 'https://planner.trufi.app/api',
+        serverUrl: '$_baseUrl/api',
       ),
     ),
   // Online routing via OTP 2.8.1
@@ -317,7 +317,7 @@ void main() {
           config: HomeScreenConfig(
             appName: _appName,
             deepLinkScheme: _deepLinkScheme,
-            shareBaseUrl: _shareBaseUrl,
+            shareBaseUrl: _baseUrl,
             poiLayersManager: POILayersManager(assetsBasePath: 'assets/pois'),
           ),
           onStartNavigation: (context, itinerary, locationService) {
