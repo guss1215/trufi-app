@@ -1,0 +1,6 @@
+# Force LF for Dart sources — Flutter's gen-l10n (and dart format)
+# writes LF, so without this rule Windows checkouts with autocrlf=true
+# keep marking generated files (app_localizations*.dart) as modified
+# after every `flutter pub get`. Aligning the repo on LF stops the
+# noise.
+*.dart text eol=lf
