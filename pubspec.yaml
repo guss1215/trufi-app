@@ -71,16 +71,6 @@ dependencies:
       url: https://github.com/trufi-association/trufi-core.git
       ref: v5.16.2
       path: packages/trufi_core_search_locations
-  trufi_core_feedback:
-    git:
-      url: https://github.com/trufi-association/trufi-core.git
-      ref: v5.16.2
-      path: packages/screens/trufi_core_feedback
-  trufi_core_fares:
-    git:
-      url: https://github.com/trufi-association/trufi-core.git
-      ref: v5.16.2
-      path: packages/screens/trufi_core_fares
   trufi_core_settings:
     git:
       url: https://github.com/trufi-association/trufi-core.git
@@ -191,16 +181,6 @@ dependency_overrides:
       url: https://github.com/trufi-association/trufi-core.git
       ref: v5.16.2
       path: packages/screens/trufi_core_transport_list
-  trufi_core_fares:
-    git:
-      url: https://github.com/trufi-association/trufi-core.git
-      ref: v5.16.2
-      path: packages/screens/trufi_core_fares
-  trufi_core_feedback:
-    git:
-      url: https://github.com/trufi-association/trufi-core.git
-      ref: v5.16.2
-      path: packages/screens/trufi_core_feedback
   trufi_core_settings:
     git:
       url: https://github.com/trufi-association/trufi-core.git

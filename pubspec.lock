@@ -1021,24 +1021,6 @@ packages:
       url: "https://github.com/trufi-association/trufi-core.git"
     source: git
     version: "1.0.0"
-  trufi_core_fares:
-    dependency: "direct main"
-    description:
-      path: "packages/screens/trufi_core_fares"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
-    version: "1.0.0"
-  trufi_core_feedback:
-    dependency: "direct main"
-    description:
-      path: "packages/screens/trufi_core_feedback"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
-    version: "1.0.0"
   trufi_core_home_screen:
     dependency: "direct main"
     description:
