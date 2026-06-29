@@ -1,11 +1,11 @@
 {
-    "name": "Trufi Cochabamba",
-    "short_name": "Trufi",
+    "name": "Trufi Sana'a",
+    "short_name": "Trufi Sana'a",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#E1306C",
-    "theme_color": "#E1306C",
-    "description": "Transporte publico en Cochabamba",
+    "background_color": "#1E88E5",
+    "theme_color": "#1E88E5",
+    "description": "Offline public transport for Sana'a, Yemen",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

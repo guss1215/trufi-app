@@ -1,178 +1,101 @@
-# Trufi Cochabamba App
+# Trufi Sana'a App
 
-Esta es la aplicación oficial de Trufi para Cochabamba, Bolivia. Ha sido completamente reconstruida usando la arquitectura moderna de Trufi Core v5.2.0.
+An **offline-first** public-transport app for **Sana'a, Yemen (Amanat Al Asimah)**, built on the
+modern Trufi Core (v5) architecture. It is a fork of
+[`trufi-association/trufi-app`](https://github.com/trufi-association/trufi-app) relocated entirely to
+Sana'a.
 
-## 📋 Características
+The app works **completely offline** and makes **no network calls**: the transit data (GTFS), the
+map tiles (MBTiles), the points of interest, and address search are all bundled as assets. This fits
+Sana'a well — the network is relatively stable, route changes are infrequent, and connectivity can be
+limited.
 
-- **Mapas Offline**: 4 estilos de mapas offline (OSM Liberty, OSM Bright, Dark Matter, Fiord Color)
-- **Mapas Online**: 4 estilos de mapas online desde maps.trufi.app
-- **Routing Offline**: Planificación de rutas offline usando GTFS
-- **Routing Online**: Planificación de rutas online usando OTP 2.8.1 y OTP 1.5.0
-- **POI Layers**: 12 categorías de puntos de interés (educación, salud, transporte, etc.)
-- **Navegación**: Navegación paso a paso para transporte público
-- **Lugares Guardados**: Guarda tus lugares favoritos
-- **Lista de Transporte**: Explora todas las rutas de transporte
-- **Tarifas**: Información sobre tarifas de transporte
-- **Feedback**: Envía comentarios y sugerencias
+> **Community data.** The bundled Sana'a transport network, map and POIs come from OpenStreetMap,
+> mapped on the ground by the Sana'a community. See the proposal discussion
+> [trufi-core#912](https://github.com/trufi-association/trufi-core/discussions/912).
 
-## 🏗️ Arquitectura
+## ✨ Features
 
-La app usa la arquitectura modular de Trufi Core v5.2.0 con los siguientes paquetes:
+- **Offline maps** — 4 MapLibre styles (OSM Liberty, OSM Bright, Dark Matter, Fiord Color) rendered
+  from a bundled Sana'a `.mbtiles`.
+- **Offline routing** — public-transport trip planning from a bundled Sana'a GTFS feed.
+- **Offline search** — address/place search over the bundled POIs (Arabic & English names), no
+  geocoding server.
+- **POI layers** — 11 categories of points of interest (healthcare, education, food, government, …).
+- **Step-by-step navigation** for public-transport trips.
+- **Saved places** and a full **transport route list**.
 
-- `trufi_core_maps` - Gestión de mapas (offline y online)
-- `trufi_core_routing` - Planificación de rutas (GTFS y OTP)
-- `trufi_core_poi_layers` - Capas de puntos de interés
-- `trufi_core_navigation` - Navegación paso a paso
-- `trufi_core_home_screen` - Pantalla principal
-- `trufi_core_saved_places` - Lugares guardados
-- `trufi_core_transport_list` - Lista de transporte
-- `trufi_core_fares` - Información de tarifas
-- `trufi_core_feedback` - Sistema de feedback
-- `trufi_core_about` - Información de la app
-- `trufi_core_settings` - Configuración
+## 🌐 Offline-first by design
 
-## 📱 Identificadores de la App
+| Feature | This app |
+|---|---|
+| Map tiles | Bundled `assets/offline/sanaa.mbtiles` (offline) |
+| Routing | Bundled `assets/routing/sanaa.gtfs.zip` (offline GTFS) |
+| Address search | Local POIs (`OfflinePoiSearchService`), no server |
+| Online tile servers / OTP / Photon | **Removed** |
+| Network calls | **None** |
 
-- **Android**: `app.trufi.navigator`
-- **iOS**: `app.trufi.navigator`
-- **Nombre**: Trufi Cochabamba
-- **Deep Link Scheme**: `trufiapp://`
+## 📱 App identifiers
 
-## 📂 Estructura de Assets
+- **Android applicationId / iOS bundle id**: `app.trufi.sanaa`
+- **Display name**: Trufi Sana'a
+- **Default map center**: `15.3694, 44.1910` (Sana'a)
+- **Deep link scheme**: `trufiapp://` (custom scheme; works offline, no domain/App Links)
+
+## 🌍 Languages
+
+The app UI currently ships in **English**, while all map and place content (POIs, street and place
+names) is already in **Arabic**.
+
+A fully Arabic **UI** is a planned follow-up: it requires adding `ar` ARB translations to the
+`trufi-core` packages (the core ships `en`/`es`/`de` today, so selecting `ar` would otherwise fall
+back/fail). App-level Arabic strings are already prepared in [`lib/l10n/app_ar.arb`](lib/l10n/app_ar.arb).
+
+## 📂 Asset structure
 
 ```
 assets/
 ├── routing/
-│   └── cochabamba.gtfs.zip          # Datos GTFS para routing offline
+│   └── sanaa.gtfs.zip               # GTFS for offline routing
 ├── offline/
-│   ├── cochabamba.mbtiles           # Tiles de mapa offline
-│   ├── styles/                      # Estilos de mapas
-│   │   ├── osm-bright/
-│   │   ├── osm-liberty/
-│   │   ├── dark-matter/
-│   │   └── fiord-color/
-│   └── fonts/                       # Fuentes para mapas
-│       ├── OpenSansRegular/
-│       ├── OpenSansBold/
-│       ├── OpenSansItalic/
-│       ├── RobotoRegular/
-│       ├── RobotoMedium/
-│       └── RobotoCondensedItalic/
-└── pois/                            # POIs en formato GeoJSON
-    ├── education.geojson
-    ├── emergency.geojson
-    ├── finance.geojson
-    ├── food.geojson
-    ├── government.geojson
-    ├── healthcare.geojson
-    ├── recreation.geojson
-    ├── religion.geojson
-    ├── shopping.geojson
-    ├── tourism.geojson
-    ├── transport.geojson
-    └── metadata.json
+│   ├── sanaa.mbtiles                # Offline map tiles
+│   ├── styles/                      # MapLibre styles (osm-bright/liberty/dark-matter/fiord-color)
+│   └── fonts/                       # Glyph PBFs for the styles
+└── pois/                            # POIs as GeoJSON (Arabic & English names) + metadata.json
+    ├── education.geojson  emergency.geojson  finance.geojson  food.geojson
+    ├── government.geojson healthcare.geojson recreation.geojson religion.geojson
+    └── shopping.geojson   tourism.geojson    transport.geojson
 ```
 
-## 🔧 Configuración
+## 🚀 Development
 
-### Endpoints de Servicios (de input/domains.txt)
+### Requirements
 
-- **Photon (Geocoding)**: https://photon.trufi.app
-- **OTP 2.8.1**: https://otp281.trufi.app
-- **OTP 1.5.0**: https://otp150.trufi.app
-- **MapLibre Styles**: https://maps.trufi.app/styles/
+- Flutter SDK (3.x)
+- Android SDK (Android) / Xcode (iOS)
 
-### Coordenadas del Centro
+### Run
 
-- Latitud: -17.3988354
-- Longitud: -66.1626903
-
-### Redes Sociales
-
-- Facebook: https://www.facebook.com/trufiapp/
-- Instagram: https://www.instagram.com/trufi.app
-- WhatsApp: https://wa.me/59167835296
-
-## 🚀 Desarrollo
-
-### Requisitos
-
-- Flutter SDK >=3.10.0
-- Android SDK (para Android)
-- Xcode (para iOS)
-
-### Instalación
-
-1. Clona el repositorio
-2. Instala las dependencias:
-   ```bash
-   flutter pub get
-   ```
-
-3. Ejecuta la app:
-   ```bash
-   # Android
-   flutter run --debug
-
-   # iOS
-   flutter run --debug
-
-   # Web (sin mapas/routing offline)
-   flutter run -d chrome
-   ```
-
-## 📝 Cambios desde trufi-app (v4.0.1)
-
-### ✅ Actualizado
-
-1. **Arquitectura**: De monolítica a modular con paquetes independientes
-2. **Trufi Core**: De v4.0.0 a v5.2.0
-3. **Mapas Offline**: Nuevo soporte con MapLibre y MBTiles
-4. **Routing Offline**: Nuevo soporte con GTFS local
-5. **POI Layers**: Sistema dinámico con GeoJSON
-6. **API**: Completamente nueva y más simple
-
-### 🔄 Mantenido
-
-1. **Bundle IDs**: `app.trufi.navigator` (Android e iOS)
-2. **App Icons**: Iconos originales de trufi-app
-3. **Ciudad**: Cochabamba, Bolivia
-4. **Datos GTFS**: cochabamba.gtfs.zip
-
-### ❌ Removido
-
-- Código legacy de trufi-app (incompatible con v5.2.0)
-- Dependencias antiguas
-- Configuraciones obsoletas
-
-## 🔍 Comparación de Versiones
-
-| Aspecto | trufi-app (v4.0.1) | cochabamba-app (v5.0.0) |
-|---------|-------------------|------------------------|
-| Trufi Core | v4.0.0 | v5.2.0 |
-| Arquitectura | Monolítica | Modular |
-| Mapas Offline | ❌ | ✅ (4 estilos) |
-| Routing Offline | ❌ | ✅ (GTFS) |
-| POI Layers | Estático | Dinámico (12 categorías) |
-| Flutter SDK | >=2.18.2 <3.0.0 | ^3.10.0 |
-
-## 📦 Dependencias Principales
-
-```yaml
-flutter_bloc: ^9.1.1
-provider: ^6.1.5+1
-go_router: ^17.0.1
-latlong2: ^0.9.1
-maplibre: ^0.3.3+2
-maplibre_gl: ^0.25.0
+```bash
+flutter pub get
+flutter gen-l10n        # generates lib/l10n/app_localizations*.dart
+flutter run --debug     # Android / iOS
 ```
 
-## 📞 Contacto
+> Web is not a target of this offline build (offline MBTiles/GTFS are mobile-only).
 
-- Email: feedback@trufi.app
-- Feedback Form: https://forms.gle/QMLhJT7N44Bh9zBN6
-- Website: https://www.trufi.app/
+## 🔗 Relationship to upstream
 
-## 📄 Licencia
+This fork tracks `trufi-association/trufi-core` packages (pulled via git in `pubspec.yaml`) and only
+changes the **app shell** for Sana'a: city center & branding, offline-only engines, an offline POI
+search service, removal of all `*.trufi.app` online endpoints and the original city's data, and
+English/Arabic localization setup.
 
-Copyright © Trufi Association
+## 📞 Contact
+
+- Email: <info@trufi-association.org>
+- Website: <https://www.trufi-association.org>
+
+## 📄 License
+
+Copyright © Trufi Association. Same license as the upstream Trufi app.

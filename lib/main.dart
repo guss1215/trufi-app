@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:trufi_core_about/trufi_core_about.dart';
-import 'package:trufi_core_fares/trufi_core_fares.dart';
-import 'package:trufi_core_feedback/trufi_core_feedback.dart';
 import 'package:trufi_core_home_screen/trufi_core_home_screen.dart';
 import 'package:trufi_core_maps/trufi_core_maps.dart';
 import 'package:trufi_core_navigation/trufi_core_navigation.dart';
@@ -14,7 +12,6 @@ import 'package:trufi_core_routing/trufi_core_routing.dart'
     show
         RoutingEngineManager,
         IRoutingProvider,
-        Otp28RoutingProvider,
         TrufiPlannerProvider,
         TrufiPlannerConfig;
 import 'package:trufi_core_saved_places/trufi_core_saved_places.dart';
@@ -25,68 +22,56 @@ import 'package:trufi_core_ui/trufi_core_ui.dart';
 import 'package:trufi_core_utils/trufi_core_utils.dart' show OverlayManager;
 
 import 'l10n/app_localizations.dart';
+import 'services/offline_poi_search_service.dart';
 
 // ============ CONFIGURATION ============
-// From input/domains.txt
-const _photonUrl = 'https://photon.trufi.app';
-const _otp281Endpoint = 'https://otp281.trufi.app';
-// Base URL for the Trufi planner. Used both as the remote routing server and
-// as the base for shared route links. Must be an HTTPS domain that hosts the
-// App Links / Universal Links verification files under /.well-known/ so that
-// tapping a shared link opens the installed app directly. See docs/deep-links.md.
-const _baseUrl = 'https://planner.trufi.app';
-
-// App configuration
-const _defaultCenter = LatLng(-17.3988354, -66.1626903);
-const _appName = 'Trufi Cochabamba';
+// Sana'a, Yemen (Amanat Al Asimah). This is an OFFLINE-FIRST build: the transit
+// data (GTFS), map tiles (MBTiles) and points of interest are all bundled as
+// assets, and the app makes no network calls. The bundled community transport
+// data comes from OpenStreetMap (mapped by the Sana'a community).
+const _defaultCenter = LatLng(15.3694, 44.1910);
+const _appName = "Trufi Sana'a";
 const _deepLinkScheme = 'trufiapp';
-const _cityName = 'Cochabamba';
-const _countryName = 'Bolivia';
-const _emailContact = 'feedback@trufi.app';
-const _feedbackUrl = 'https://forms.gle/QMLhJT7N44Bh9zBN6';
-const _facebookUrl = 'https://www.facebook.com/trufiapp/';
-const _instagramUrl = 'https://www.instagram.com/trufi.app';
-const _whatsappUrl = 'https://wa.me/59167835296';
+const _cityName = "Sana'a";
+const _countryName = 'Yemen';
+const _emailContact = 'info@trufi-association.org';
 
-// Routing engines
+// POI GeoJSON assets, also used by the offline address search below.
+const _poiAssetPaths = <String>[
+  'assets/pois/education.geojson',
+  'assets/pois/emergency.geojson',
+  'assets/pois/finance.geojson',
+  'assets/pois/food.geojson',
+  'assets/pois/government.geojson',
+  'assets/pois/healthcare.geojson',
+  'assets/pois/recreation.geojson',
+  'assets/pois/religion.geojson',
+  'assets/pois/shopping.geojson',
+  'assets/pois/tourism.geojson',
+  'assets/pois/transport.geojson',
+];
+
+// Routing engines: offline only.
 final List<IRoutingProvider> _routingEngines = [
-  // Offline routing via GTFS (mobile) / online via server (web)
+  // Offline routing from the bundled Sana'a GTFS feed (mobile only).
   if (!kIsWeb)
     TrufiPlannerProvider(
       config: const TrufiPlannerConfig.local(
-        gtfsAsset: 'assets/routing/cochabamba.gtfs.zip',
+        gtfsAsset: 'assets/routing/sanaa.gtfs.zip',
       ),
     ),
-  if (kIsWeb)
-    TrufiPlannerProvider(
-      config: const TrufiPlannerConfig.remote(
-        // Absolute URL on purpose: a relative `/api` works in
-        // production (same-origin behind the YARP gateway) but
-        // breaks `flutter run -d chrome` locally because it
-        // resolves to `localhost:8080/api`, which doesn't exist.
-        serverUrl: '$_baseUrl/api',
-      ),
-    ),
-  // Online routing via OTP 2.8.1
-  Otp28RoutingProvider(
-    endpoint: _otp281Endpoint,
-    displayName: 'OTP 2.8.1',
-    showWheelchairOption: false,
-    showBicycleOption: false,
-  ),
 ];
 
-// Map engines
+// Map engines: offline only (Sana'a MBTiles). No online tile servers.
 final List<ITrufiMapEngine> _mapEngines = [
-  // Offline maps - mobile only (web uses the online maps below)
-  if (!kIsWeb) ...[
+  if (!kIsWeb)
     OfflineMapLibreEngine(
       engineId: 'offline_osm_liberty',
       nameBuilder: (ctx) => AppLocalizations.of(ctx)!.mapStandardOffline,
       descriptionBuilder: (ctx) =>
           AppLocalizations.of(ctx)!.mapStandardOfflineDesc,
       config: OfflineMapConfig(
-        mbtilesAsset: 'assets/offline/cochabamba.mbtiles',
+        mbtilesAsset: 'assets/offline/sanaa.mbtiles',
         styleAsset: 'assets/offline/styles/osm-liberty/style.json',
         spritesAssetDir: 'assets/offline/styles/osm-liberty/',
         fontsAssetDir: 'assets/offline/fonts/',
@@ -107,13 +92,14 @@ final List<ITrufiMapEngine> _mapEngines = [
         ],
       ),
     ),
+  if (!kIsWeb)
     OfflineMapLibreEngine(
       engineId: 'offline_osm_bright',
       nameBuilder: (ctx) => AppLocalizations.of(ctx)!.mapLightOffline,
       descriptionBuilder: (ctx) =>
           AppLocalizations.of(ctx)!.mapLightOfflineDesc,
       config: OfflineMapConfig(
-        mbtilesAsset: 'assets/offline/cochabamba.mbtiles',
+        mbtilesAsset: 'assets/offline/sanaa.mbtiles',
         styleAsset: 'assets/offline/styles/osm-bright/style.json',
         spritesAssetDir: 'assets/offline/styles/osm-bright/',
         fontsAssetDir: 'assets/offline/fonts/',
@@ -134,12 +120,13 @@ final List<ITrufiMapEngine> _mapEngines = [
         ],
       ),
     ),
+  if (!kIsWeb)
     OfflineMapLibreEngine(
       engineId: 'offline_dark_matter',
       nameBuilder: (ctx) => AppLocalizations.of(ctx)!.mapDarkOffline,
       descriptionBuilder: (ctx) => AppLocalizations.of(ctx)!.mapDarkOfflineDesc,
       config: OfflineMapConfig(
-        mbtilesAsset: 'assets/offline/cochabamba.mbtiles',
+        mbtilesAsset: 'assets/offline/sanaa.mbtiles',
         styleAsset: 'assets/offline/styles/dark-matter/style.json',
         spritesAssetDir: 'assets/offline/styles/dark-matter/',
         fontsAssetDir: 'assets/offline/fonts/',
@@ -163,13 +150,14 @@ final List<ITrufiMapEngine> _mapEngines = [
         ],
       ),
     ),
+  if (!kIsWeb)
     OfflineMapLibreEngine(
       engineId: 'offline_fiord_color',
       nameBuilder: (ctx) => AppLocalizations.of(ctx)!.mapColorfulOffline,
       descriptionBuilder: (ctx) =>
           AppLocalizations.of(ctx)!.mapColorfulOfflineDesc,
       config: OfflineMapConfig(
-        mbtilesAsset: 'assets/offline/cochabamba.mbtiles',
+        mbtilesAsset: 'assets/offline/sanaa.mbtiles',
         styleAsset: 'assets/offline/styles/fiord-color/style.json',
         spritesAssetDir: 'assets/offline/styles/fiord-color/',
         fontsAssetDir: 'assets/offline/fonts/',
@@ -193,36 +181,6 @@ final List<ITrufiMapEngine> _mapEngines = [
         ],
       ),
     ),
-  ],
-  // Online maps - web only
-  if (kIsWeb) ...[
-    MapLibreEngine(
-      engineId: 'osm_bright',
-      styleString: 'https://maps.trufi.app/styles/osm-bright/style.json',
-      nameBuilder: (ctx) => AppLocalizations.of(ctx)!.mapLightOnline,
-      descriptionBuilder: (ctx) => AppLocalizations.of(ctx)!.mapLightOnlineDesc,
-    ),
-    MapLibreEngine(
-      engineId: 'osm_liberty',
-      styleString: 'https://maps.trufi.app/styles/osm-liberty/style.json',
-      nameBuilder: (ctx) => AppLocalizations.of(ctx)!.mapStandardOnline,
-      descriptionBuilder: (ctx) =>
-          AppLocalizations.of(ctx)!.mapStandardOnlineDesc,
-    ),
-    MapLibreEngine(
-      engineId: 'dark_matter',
-      styleString: 'https://maps.trufi.app/styles/dark-matter/style.json',
-      nameBuilder: (ctx) => AppLocalizations.of(ctx)!.mapDarkOnline,
-      descriptionBuilder: (ctx) => AppLocalizations.of(ctx)!.mapDarkOnlineDesc,
-    ),
-    MapLibreEngine(
-      engineId: 'fiord_color',
-      styleString: 'https://maps.trufi.app/styles/fiord-color/style.json',
-      nameBuilder: (ctx) => AppLocalizations.of(ctx)!.mapColorfulOnline,
-      descriptionBuilder: (ctx) =>
-          AppLocalizations.of(ctx)!.mapColorfulOnlineDesc,
-    ),
-  ],
 ];
 // ========================================
 
@@ -231,54 +189,29 @@ void main() {
     AppConfiguration(
       appName: _appName,
       deepLinkScheme: _deepLinkScheme,
-      defaultLocale: const Locale('es'),
-      // Cochabamba's bus network only runs roughly 06:00–22:00.
-      // Pinning the routing request to midday avoids "0 routes" when
-      // the user opens the app late at night, and the picker UI is
-      // hidden because the value is fixed.
+      // UI chrome is English for now. The app's content (place names, POIs,
+      // map labels) is already in Arabic. A fully Arabic UI requires `ar`
+      // localizations in trufi-core (a core-side follow-up) — see README.
+      localeConfig: const TrufiLocaleConfig(
+        supportedLocales: [Locale('en')],
+        defaultLocaleIndex: 0,
+      ),
+      // Pin routing to midday so the offline planner returns results regardless
+      // of when the app is opened; the time picker stays hidden.
       routingTimeOverride: const TimeOfDay(hour: 12, minute: 0),
       extraLocalizationsDelegates: [AppLocalizations.delegate],
       themeConfig: TrufiThemeConfig(
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFE1306C)),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1E88E5)),
           useMaterial3: true,
         ),
         darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFFE1306C),
+            seedColor: const Color(0xFF1E88E5),
             brightness: Brightness.dark,
           ),
           useMaterial3: true,
         ),
-      ),
-      socialMediaLinks: [
-        SocialMediaLink(
-          url: _facebookUrl,
-          icon: SocialMediaPreset.facebook.icon,
-          label: 'Facebook',
-        ),
-        SocialMediaLink(
-          url: _instagramUrl,
-          icon: SocialMediaPreset.instagram.icon,
-          label: 'Instagram',
-        ),
-        SocialMediaLink(
-          url: _whatsappUrl,
-          icon: SocialMediaPreset.whatsapp.icon,
-          label: 'WhatsApp',
-        ),
-      ],
-      overlayManager: OverlayManager(
-        managers: [
-          OnboardingManager(
-            overlayBuilder: (onComplete) =>
-                OnboardingSheet(onComplete: onComplete),
-          ),
-          PrivacyConsentManager(
-            overlayBuilder: (onAccept, onDecline) =>
-                PrivacyConsentSheet(onAccept: onAccept, onDecline: onDecline),
-          ),
-        ],
       ),
       providers: [
         ChangeNotifierProvider(
@@ -290,10 +223,27 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => RoutingEngineManager(engines: _routingEngines),
         ),
+        ChangeNotifierProvider(
+          create: (_) => OverlayManager(
+            managers: [
+              OnboardingManager(
+                overlayBuilder: (onComplete) =>
+                    OnboardingSheet(onComplete: onComplete),
+              ),
+              PrivacyConsentManager(
+                overlayBuilder: (onAccept, onDecline) => PrivacyConsentSheet(
+                  onAccept: onAccept,
+                  onDecline: onDecline,
+                ),
+              ),
+            ],
+          ),
+        ),
         BlocProvider(
           create: (_) => SearchLocationsCubit(
-            searchLocationService: PhotonSearchService(
-              baseUrl: _photonUrl,
+            // Offline-first: search the bundled Sana'a POIs, no network.
+            searchLocationService: OfflinePoiSearchService(
+              poiAssetPaths: _poiAssetPaths,
               biasLatitude: _defaultCenter.latitude,
               biasLongitude: _defaultCenter.longitude,
             ),
@@ -305,7 +255,6 @@ void main() {
           config: HomeScreenConfig(
             appName: _appName,
             deepLinkScheme: _deepLinkScheme,
-            shareBaseUrl: _baseUrl,
             poiLayersManager: POILayersManager(assetsBasePath: 'assets/pois'),
           ),
           onStartNavigation: (context, itinerary, locationService) {
@@ -322,50 +271,6 @@ void main() {
         ),
         SavedPlacesTrufiScreen(),
         TransportListTrufiScreen(),
-        FaresTrufiScreen(
-          config: FaresConfig(
-            currency: 'Bs.',
-            lastUpdated: DateTime(2026, 5, 6),
-            additionalNotes:
-                'Tarifa provisional vigente para servicios urbanos dentro '
-                'del Cercado. El monto cobrado en algunos operadores puede '
-                'diferir.',
-            fares: const [
-              FareInfo(
-                title: 'Pasaje urbano (Cercado)',
-                icon: Icons.directions_bus_rounded,
-                primary: FareCategory(
-                  label: 'Usuarios en general',
-                  price: '3.00',
-                  icon: Icons.person_rounded,
-                ),
-                additional: [
-                  FareCategory(
-                    label: 'Estudiante sec./universitario',
-                    price: '2.00',
-                    icon: Icons.school_rounded,
-                  ),
-                  FareCategory(
-                    label: 'Estudiante de primaria',
-                    price: '1.00',
-                    icon: Icons.child_care_rounded,
-                  ),
-                  FareCategory(
-                    label: 'Adulto mayor',
-                    price: '2.50',
-                    icon: Icons.elderly_rounded,
-                  ),
-                  FareCategory(
-                    label: 'Persona con discapacidad',
-                    price: '2.50',
-                    icon: Icons.accessible_rounded,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        FeedbackTrufiScreen(config: FeedbackConfig(feedbackUrl: _feedbackUrl)),
         SettingsTrufiScreen(),
         AboutTrufiScreen(
           config: AboutScreenConfig(

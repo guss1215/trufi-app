@@ -1,8 +1,8 @@
 name: trufi
-description: "Trufi Cochabamba - Transit navigation app for Cochabamba, Bolivia"
+description: "Trufi Sana'a - Offline transit navigation app for Sana'a, Yemen"
 publish_to: 'none'
 
-version: 5.0.6+78
+version: 1.0.0+1
 
 environment:
   sdk: ^3.12.2
