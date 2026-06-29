@@ -189,11 +189,12 @@ void main() {
     AppConfiguration(
       appName: _appName,
       deepLinkScheme: _deepLinkScheme,
-      // UI chrome is English for now. The app's content (place names, POIs,
-      // map labels) is already in Arabic. A fully Arabic UI requires `ar`
-      // localizations in trufi-core (a core-side follow-up) — see README.
+      // Arabic-first UI (RTL) for the Sana'a deployment, with English
+      // available in settings. Arabic localizations now ship in trufi-core
+      // (fork branch sanaa-ar) across all packages. To default to English
+      // instead, set defaultLocaleIndex to 1.
       localeConfig: const TrufiLocaleConfig(
-        supportedLocales: [Locale('en')],
+        supportedLocales: [Locale('ar'), Locale('en')],
         defaultLocaleIndex: 0,
       ),
       // Pin routing to midday so the offline planner returns results regardless
@@ -230,12 +231,9 @@ void main() {
                 overlayBuilder: (onComplete) =>
                     OnboardingSheet(onComplete: onComplete),
               ),
-              PrivacyConsentManager(
-                overlayBuilder: (onAccept, onDecline) => PrivacyConsentSheet(
-                  onAccept: onAccept,
-                  onDecline: onDecline,
-                ),
-              ),
+              // No privacy-consent overlay: this is an offline-first build that
+              // collects and transmits nothing, so a data-collection consent
+              // prompt would be misleading.
             ],
           ),
         ),

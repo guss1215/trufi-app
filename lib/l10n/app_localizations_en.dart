@@ -31,28 +31,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mapColorfulOfflineDesc => 'Colorful offline map';
-
-  @override
-  String get mapLightOnline => 'Light (online)';
-
-  @override
-  String get mapLightOnlineDesc => 'Light online map';
-
-  @override
-  String get mapStandardOnline => 'Standard (online)';
-
-  @override
-  String get mapStandardOnlineDesc => 'Standard online map';
-
-  @override
-  String get mapDarkOnline => 'Dark (online)';
-
-  @override
-  String get mapDarkOnlineDesc => 'Dark online map';
-
-  @override
-  String get mapColorfulOnline => 'Colorful (online)';
-
-  @override
-  String get mapColorfulOnlineDesc => 'Colorful online map';
 }

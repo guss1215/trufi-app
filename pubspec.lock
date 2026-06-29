@@ -997,155 +997,142 @@ packages:
   trufi_core_about:
     dependency: "direct main"
     description:
-      path: "packages/screens/trufi_core_about"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/screens/trufi_core_about"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_base_widgets:
     dependency: "direct overridden"
     description:
-      path: "packages/trufi_core_base_widgets"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_base_widgets"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_custom_material:
     dependency: "direct overridden"
     description:
-      path: "packages/trufi_core_custom_material"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_custom_material"
+      relative: false
+    source: path
+    version: "1.0.0"
+  trufi_core_fares:
+    dependency: "direct overridden"
+    description:
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/screens/trufi_core_fares"
+      relative: false
+    source: path
+    version: "1.0.0"
+  trufi_core_feedback:
+    dependency: "direct overridden"
+    description:
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/screens/trufi_core_feedback"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_home_screen:
     dependency: "direct main"
     description:
-      path: "packages/screens/trufi_core_home_screen"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/screens/trufi_core_home_screen"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_interfaces:
     dependency: "direct main"
     description:
-      path: "packages/trufi_core_interfaces"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_interfaces"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_maps:
     dependency: "direct main"
     description:
-      path: "packages/trufi_core_maps"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_maps"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_navigation:
     dependency: "direct main"
     description:
-      path: "packages/trufi_core_navigation"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_navigation"
+      relative: false
+    source: path
+    version: "1.0.0"
+  trufi_core_notifications:
+    dependency: "direct overridden"
+    description:
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_notifications"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_planner:
     dependency: "direct overridden"
     description:
-      path: "packages/trufi_core_planner"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_planner"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_poi_layers:
     dependency: "direct main"
     description:
-      path: "packages/trufi_core_poi_layers"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_poi_layers"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_routing:
     dependency: "direct main"
     description:
-      path: "packages/trufi_core_routing"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_routing"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_routing_ui:
     dependency: "direct overridden"
     description:
-      path: "packages/trufi_core_routing_ui"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_routing_ui"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_saved_places:
     dependency: "direct main"
     description:
-      path: "packages/screens/trufi_core_saved_places"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/screens/trufi_core_saved_places"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_search_locations:
     dependency: "direct main"
     description:
-      path: "packages/trufi_core_search_locations"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_search_locations"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_settings:
     dependency: "direct main"
     description:
-      path: "packages/screens/trufi_core_settings"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/screens/trufi_core_settings"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_transport_list:
     dependency: "direct main"
     description:
-      path: "packages/screens/trufi_core_transport_list"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/screens/trufi_core_transport_list"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_ui:
     dependency: "direct main"
     description:
-      path: "packages/trufi_core_ui"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_ui"
+      relative: false
+    source: path
     version: "1.0.0"
   trufi_core_utils:
     dependency: "direct main"
     description:
-      path: "packages/trufi_core_utils"
-      ref: "v5.16.2"
-      resolved-ref: "6e70658055bfdec386f861abf6e48acd2a274f2d"
-      url: "https://github.com/trufi-association/trufi-core.git"
-    source: git
+      path: "/Users/guss/workspace/Trufi/trufi-core-sanaa-ar/packages/trufi_core_utils"
+      relative: false
+    source: path
     version: "1.0.0"
   typed_data:
     dependency: transitive
@@ -1348,5 +1335,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.12.1 <4.0.0"
+  dart: ">=3.12.2 <4.0.0"
   flutter: ">=3.44.0"

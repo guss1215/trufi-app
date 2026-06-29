@@ -31,28 +31,4 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get mapColorfulOfflineDesc => 'خريطة ملوّنة دون اتصال';
-
-  @override
-  String get mapLightOnline => 'فاتح (متصل)';
-
-  @override
-  String get mapLightOnlineDesc => 'خريطة فاتحة متصلة';
-
-  @override
-  String get mapStandardOnline => 'قياسي (متصل)';
-
-  @override
-  String get mapStandardOnlineDesc => 'خريطة قياسية متصلة';
-
-  @override
-  String get mapDarkOnline => 'داكن (متصل)';
-
-  @override
-  String get mapDarkOnlineDesc => 'خريطة داكنة متصلة';
-
-  @override
-  String get mapColorfulOnline => 'ملوّن (متصل)';
-
-  @override
-  String get mapColorfulOnlineDesc => 'خريطة ملوّنة متصلة';
 }

@@ -142,54 +142,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Colorful offline map'**
   String get mapColorfulOfflineDesc;
-
-  /// Display name for the light online map style
-  ///
-  /// In en, this message translates to:
-  /// **'Light (online)'**
-  String get mapLightOnline;
-
-  /// Description for the light online map style
-  ///
-  /// In en, this message translates to:
-  /// **'Light online map'**
-  String get mapLightOnlineDesc;
-
-  /// Display name for the standard online map style
-  ///
-  /// In en, this message translates to:
-  /// **'Standard (online)'**
-  String get mapStandardOnline;
-
-  /// Description for the standard online map style
-  ///
-  /// In en, this message translates to:
-  /// **'Standard online map'**
-  String get mapStandardOnlineDesc;
-
-  /// Display name for the dark online map style
-  ///
-  /// In en, this message translates to:
-  /// **'Dark (online)'**
-  String get mapDarkOnline;
-
-  /// Description for the dark online map style
-  ///
-  /// In en, this message translates to:
-  /// **'Dark online map'**
-  String get mapDarkOnlineDesc;
-
-  /// Display name for the colorful online map style
-  ///
-  /// In en, this message translates to:
-  /// **'Colorful (online)'**
-  String get mapColorfulOnline;
-
-  /// Description for the colorful online map style
-  ///
-  /// In en, this message translates to:
-  /// **'Colorful online map'**
-  String get mapColorfulOnlineDesc;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

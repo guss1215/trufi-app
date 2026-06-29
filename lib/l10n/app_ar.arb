@@ -7,13 +7,5 @@
   "mapDarkOffline": "داكن (دون اتصال)",
   "mapDarkOfflineDesc": "خريطة داكنة دون اتصال",
   "mapColorfulOffline": "ملوّن (دون اتصال)",
-  "mapColorfulOfflineDesc": "خريطة ملوّنة دون اتصال",
-  "mapLightOnline": "فاتح (متصل)",
-  "mapLightOnlineDesc": "خريطة فاتحة متصلة",
-  "mapStandardOnline": "قياسي (متصل)",
-  "mapStandardOnlineDesc": "خريطة قياسية متصلة",
-  "mapDarkOnline": "داكن (متصل)",
-  "mapDarkOnlineDesc": "خريطة داكنة متصلة",
-  "mapColorfulOnline": "ملوّن (متصل)",
-  "mapColorfulOnlineDesc": "خريطة ملوّنة متصلة"
+  "mapColorfulOfflineDesc": "خريطة ملوّنة دون اتصال"
 }
