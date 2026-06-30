@@ -1,0 +1,3 @@
+out/*
+!out/sanaa.osm.pbf
+country.osm.pbf
