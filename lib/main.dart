@@ -29,7 +29,7 @@ import 'services/offline_poi_search_service.dart';
 // data (GTFS), map tiles (MBTiles) and points of interest are all bundled as
 // assets, and the app makes no network calls. The bundled community transport
 // data comes from OpenStreetMap (mapped by the Sana'a community).
-const _defaultCenter = LatLng(15.3694, 44.1910);
+const _defaultCenter = LatLng(15.3470, 44.2050);
 const _appName = "Trufi Sana'a";
 const _deepLinkScheme = 'trufiapp';
 const _cityName = "Sana'a";
@@ -222,6 +222,8 @@ void main() {
           create: (_) => MapEngineManager(
             engines: _mapEngines,
             defaultCenter: _defaultCenter,
+            // Open zoomed into central Sana'a so the street grid is visible.
+            defaultZoom: 14,
           ),
         ),
         ChangeNotifierProvider(
