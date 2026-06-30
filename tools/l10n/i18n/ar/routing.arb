@@ -1,0 +1,21 @@
+{
+  "@@locale": "ar",
+  "prefsWalkingSpeed": "سرعة المشي",
+  "prefsSpeedSlow": "بطيئة",
+  "prefsSpeedNormal": "عادية",
+  "prefsSpeedFast": "سريعة",
+  "prefsMaxWalkDistance": "أقصى مسافة للمشي",
+  "prefsNoLimit": "بلا حد",
+  "prefsTransportModes": "وسائل النقل",
+  "prefsModeTransit": "النقل العام",
+  "prefsModeWalk": "المشي",
+  "prefsModeBicycle": "الدراجة",
+  "prefsWheelchairAccessible": "مناسب للكراسي المتحركة",
+  "prefsWheelchairOn": "تتجنب المسارات الدرج والمنحدرات الحادة",
+  "prefsWheelchairOff": "تضمين جميع المسارات",
+  "serviceActiveClosesAt": "نشط · يغلق في {time}",
+  "serviceClosedOpensAt": "مغلق · يفتح في {time}",
+  "serviceClosedOpensDayAt": "مغلق · يفتح {day} في {time}",
+  "serviceClosed": "مغلق",
+  "serviceTomorrow": "غدًا"
+}
