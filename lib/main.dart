@@ -21,7 +21,7 @@ import 'package:trufi_core_transport_list/trufi_core_transport_list.dart';
 import 'package:trufi_core_ui/trufi_core_ui.dart';
 import 'package:trufi_core_utils/trufi_core_utils.dart' show OverlayManager;
 
-import 'l10n/app_localizations.dart';
+import 'l10n/l10n.dart';
 import 'services/offline_poi_search_service.dart';
 
 // ============ CONFIGURATION ============
@@ -67,9 +67,8 @@ final List<ITrufiMapEngine> _mapEngines = [
   if (!kIsWeb)
     OfflineMapLibreEngine(
       engineId: 'offline_osm_liberty',
-      nameBuilder: (ctx) => AppLocalizations.of(ctx)!.mapStandardOffline,
-      descriptionBuilder: (ctx) =>
-          AppLocalizations.of(ctx)!.mapStandardOfflineDesc,
+      displayName: 'Standard (offline)',
+      displayDescription: 'Standard offline map',
       config: OfflineMapConfig(
         mbtilesAsset: 'assets/offline/sanaa.mbtiles',
         styleAsset: 'assets/offline/styles/osm-liberty/style.json',
@@ -101,9 +100,9 @@ void main() {
       appName: _appName,
       deepLinkScheme: _deepLinkScheme,
       // English UI by default, with Arabic (RTL) available in settings.
-      // Arabic localizations ship in trufi-core (fork branch sanaa-ar) across
-      // all packages plus this app. To default to Arabic, put Locale('ar')
-      // first in supportedLocales.
+      // Arabic for all screens is provided APP-SIDE via extraLocalizationsDelegates
+      // (see lib/l10n/), so this app uses the official trufi-core — no fork.
+      // To default to Arabic, put Locale('ar') first in supportedLocales.
       localeConfig: const TrufiLocaleConfig(
         supportedLocales: [Locale('en'), Locale('ar')],
         defaultLocaleIndex: 0,
@@ -112,8 +111,9 @@ void main() {
       // of when the app is opened; the time picker stays hidden.
       routingTimeOverride: const TimeOfDay(hour: 12, minute: 0),
       extraLocalizationsDelegates: [
-        AppLocalizations.delegate,
-        MapsLocalizations.delegate,
+        // Arabic for all trufi-core screens — provided app-side (lib/l10n/),
+        // so this app uses official trufi-core (no fork) for the language.
+        ...L10n.delegates,
       ],
       themeConfig: TrufiThemeConfig(
         theme: ThemeData(

@@ -1,0 +1,19 @@
+{
+  "@@locale": "ar",
+  "menuTransportList": "الخطوط",
+  "searchRoutes": "البحث عن الخطوط",
+  "noRoutesFound": "لم يتم العثور على خطوط",
+  "shareRoute": "مشاركة الخط",
+  "stops": "{count} محطة",
+  "routeNotFound": "الخط غير موجود",
+  "routeLoadError": "تعذر تحميل الخط",
+  "pullDownToRefresh": "اسحب للأسفل للتحديث",
+  "tryDifferentSearch": "جرّب مصطلح بحث مختلف",
+  "buttonGoBack": "رجوع",
+  "routeCount": "{count} خط",
+  "labelDistance": "المسافة",
+  "labelStops": "المحطات",
+  "labelMode": "وسيلة النقل",
+  "noStopsAvailable": "لا توجد محطات متاحة",
+  "loadingRoute": "جارٍ تحميل الخط..."
+}

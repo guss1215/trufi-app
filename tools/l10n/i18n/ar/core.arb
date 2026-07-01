@@ -1,0 +1,22 @@
+{
+  "@@locale": "ar",
+  "appName": "تروفي",
+  "appLoading": "جارٍ التحميل...",
+  "navHome": "الرئيسية",
+  "navSearch": "بحث",
+  "navFeedback": "ملاحظات",
+  "navSettings": "الإعدادات",
+  "navAbout": "حول",
+  "actionSave": "حفظ",
+  "actionCancel": "إلغاء",
+  "actionConfirm": "تأكيد",
+  "errorGeneric": "حدث خطأ",
+  "errorNetwork": "خطأ في الشبكة. يرجى التحقق من اتصالك.",
+  "errorInitialization": "فشل في تهيئة التطبيق",
+  "actionRetry": "إعادة المحاولة",
+  "errorPageNotFound": "الصفحة غير موجودة",
+  "actionGoHome": "الذهاب إلى الرئيسية",
+  "titleError": "خطأ",
+  "unreadCount": "{count} غير مقروء",
+  "markAllAsRead": "تعليم الكل كمقروء"
+}
